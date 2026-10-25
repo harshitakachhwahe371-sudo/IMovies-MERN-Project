@@ -1,0 +1,3 @@
+import mongoose from 'mongoose';
+const schema=new mongoose.Schema({user:{type:mongoose.Schema.Types.ObjectId,ref:'User',required:true,index:true},show:{type:mongoose.Schema.Types.ObjectId,ref:'Show',required:true},movieTitle:{type:String,required:true},theatre:{type:String,required:true},startsAt:{type:Date,required:true},seats:[{type:String,required:true}],totalAmount:{type:Number,required:true,min:0},paymentStatus:{type:String,enum:['demo-paid','pending','refunded'],default:'demo-paid'},status:{type:String,enum:['confirmed','cancelled'],default:'confirmed'}},{timestamps:true});
+schema.index({user:1,createdAt:-1});export default mongoose.model('Booking',schema);

@@ -1,0 +1,3 @@
+import mongoose from 'mongoose';
+const schema=new mongoose.Schema({movie:{type:mongoose.Schema.Types.ObjectId,ref:'Movie',required:true,index:true},theatre:{type:String,required:true,trim:true},city:{type:String,required:true,trim:true,default:'Indore'},startsAt:{type:Date,required:true,index:true},price:{type:Number,required:true,min:0},seats:[{code:{type:String,required:true},status:{type:String,enum:['available','booked'],default:'available'},bookedBy:{type:mongoose.Schema.Types.ObjectId,ref:'User',default:null}}],isActive:{type:Boolean,default:true}},{timestamps:true});
+schema.index({movie:1,startsAt:1,city:1});export default mongoose.model('Show',schema);
